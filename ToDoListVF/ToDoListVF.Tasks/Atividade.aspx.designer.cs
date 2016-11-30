@@ -10,7 +10,7 @@
 namespace ToDoListVF.Tasks {
     
     
-    public partial class Agenda {
+    public partial class Atividade {
         
         /// <summary>
         /// form1 control.
@@ -22,12 +22,12 @@ namespace ToDoListVF.Tasks {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// GridView3 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }
