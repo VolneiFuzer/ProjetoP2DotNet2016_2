@@ -14,22 +14,27 @@
     <h1>Cadastro</h1>
     <form id="form1" runat="server">
     <div class="form-group">
-        <label for="titulolabel">Titulo:</label>
-        <input type="text" class="form-control" id="titulo">
+        <label for="titulolabel">Titulo:</label> &nbsp
+        <asp:TextBox  id="titulo" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="datalabel">Data:</label>
-        <input type="text" class="form-control" id="data">
+        <asp:TextBox  id="data" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="horalabel">Hora:</label>
-        <input type="text" class="form-control" id="hora">
+        <asp:TextBox  id="hora" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
+        <label for="enderecolabel">Endereco:</label>
+        <asp:TextBox  id="endereco" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="descricaolabel">Descrição:</label>
-        <input type="text" class="form-control" id="descricao">
+        <asp:TextBox  id="descricao" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="statuslabel">Status:</label>
-        <input type="text" class="form-control" id="status">
+        <asp:TextBox  id="status" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
+        <label for="participantelabel">Participante:</label>
+        <asp:TextBox  id="participante" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="contatolabel">Contato:</label>
-        <input type="text" class="form-control" id="contato">
+        <asp:TextBox  id="contato" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
         <label for="periodicidadelabel">Periodicidade:</label>
-        <input type="text" class="form-control" id="periodicidade">
-        <br />  <br /> 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>                        
+        <asp:TextBox  id="periodicidade" runat="server" class="form-control"></asp:TextBox> &nbsp  &nbsp
+        <br />  <br />
+        <asp:Button ID="Button1" runat="server" Text="Cadastrar" class="btn btn-primary" OnClick="Button1_Click1"/>
+        <br />
     </div>
     </form>
 </body>

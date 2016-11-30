@@ -15,9 +15,10 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="ToDoListaDataBase" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="ToDoListaDataBase" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
+                <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
                 <asp:BoundField DataField="TITULO" HeaderText="TITULO" SortExpression="TITULO" />
                 <asp:BoundField DataField="DATA" HeaderText="DATA" SortExpression="DATA" />
