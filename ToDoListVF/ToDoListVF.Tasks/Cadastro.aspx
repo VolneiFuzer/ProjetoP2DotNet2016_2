@@ -11,11 +11,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <h1>Cadastro</h1>
     <form id="form1" runat="server">
-    <div>
-
-
-    
+    <div class="form-group">
+        <label for="titulolabel">Titulo:</label>
+        <input type="text" class="form-control" id="titulo">
+        <label for="datalabel">Data:</label>
+        <input type="text" class="form-control" id="data">
+        <label for="horalabel">Hora:</label>
+        <input type="text" class="form-control" id="hora">
+        <label for="descricaolabel">Descrição:</label>
+        <input type="text" class="form-control" id="descricao">
+        <label for="statuslabel">Status:</label>
+        <input type="text" class="form-control" id="status">
+        <label for="contatolabel">Contato:</label>
+        <input type="text" class="form-control" id="contato">
+        <label for="periodicidadelabel">Periodicidade:</label>
+        <input type="text" class="form-control" id="periodicidade">
+        <br />  <br /> 
+        <button type="submit" class="btn btn-primary">Cadastrar</button>                        
     </div>
     </form>
 </body>
