@@ -18,11 +18,12 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="ToDoListaDataBase" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
                 <asp:BoundField DataField="TITULO" HeaderText="TITULO" SortExpression="TITULO" />
                 <asp:BoundField DataField="DATA" HeaderText="DATA" SortExpression="DATA" />
                 <asp:BoundField DataField="HORA" HeaderText="HORA" SortExpression="HORA" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -36,7 +37,28 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
     
-        <asp:SqlDataSource ID="ToDoListaDataBase" runat="server" ConnectionString="Data Source=DESKTOP-M6LDF21\SQLSERVER;Initial Catalog=ToDoListDB;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [ID], [TITULO], [DATA], [HORA] FROM [AGENDA]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="ToDoListaDataBase" runat="server" ConnectionString="<%$ ConnectionStrings:ToDoListDBConnectionString1 %>" SelectCommand="SELECT [ID], [TITULO], [DATA], [HORA] FROM [AGENDA]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [AGENDA] WHERE [ID] = @original_ID AND (([TITULO] = @original_TITULO) OR ([TITULO] IS NULL AND @original_TITULO IS NULL)) AND (([DATA] = @original_DATA) OR ([DATA] IS NULL AND @original_DATA IS NULL)) AND (([HORA] = @original_HORA) OR ([HORA] IS NULL AND @original_HORA IS NULL))" InsertCommand="INSERT INTO [AGENDA] ([TITULO], [DATA], [HORA]) VALUES (@TITULO, @DATA, @HORA)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [AGENDA] SET [TITULO] = @TITULO, [DATA] = @DATA, [HORA] = @HORA WHERE [ID] = @original_ID AND (([TITULO] = @original_TITULO) OR ([TITULO] IS NULL AND @original_TITULO IS NULL)) AND (([DATA] = @original_DATA) OR ([DATA] IS NULL AND @original_DATA IS NULL)) AND (([HORA] = @original_HORA) OR ([HORA] IS NULL AND @original_HORA IS NULL))">
+            <DeleteParameters>
+                <asp:Parameter Name="original_ID" Type="Int32" />
+                <asp:Parameter Name="original_TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="original_DATA" />
+                <asp:Parameter DbType="Time" Name="original_HORA" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="DATA" />
+                <asp:Parameter DbType="Time" Name="HORA" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="DATA" />
+                <asp:Parameter DbType="Time" Name="HORA" />
+                <asp:Parameter Name="original_ID" Type="Int32" />
+                <asp:Parameter Name="original_TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="original_DATA" />
+                <asp:Parameter DbType="Time" Name="original_HORA" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
     
     </div>
     </form>

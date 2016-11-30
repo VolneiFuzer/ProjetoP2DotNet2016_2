@@ -15,16 +15,16 @@
     <form id="form1" runat="server">
     <div>
 
-        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" OnSelectedIndexChanged="GridView3_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
                 <asp:BoundField DataField="TITULO" HeaderText="TITULO" SortExpression="TITULO" />
+                <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
                 <asp:BoundField DataField="DATA" HeaderText="DATA" SortExpression="DATA" />
                 <asp:BoundField DataField="HORA" HeaderText="HORA" SortExpression="HORA" />
                 <asp:BoundField DataField="STATUS_AT" HeaderText="STATUS_AT" SortExpression="STATUS_AT" />
-                <asp:BoundField DataField="DESCRICAO" HeaderText="DESCRICAO" SortExpression="DESCRICAO" />
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -38,7 +38,32 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
     
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ToDoListDBConnectionString1 %>" SelectCommand="SELECT ID, TITULO, DATA, HORA, STATUS_AT, DESCRICAO FROM AGENDA WHERE (DATA = CONVERT (CHAR, GETDATE(), 102))"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ToDoListDBConnectionString1 %>" SelectCommand="SELECT [TITULO], [ID], [DATA], [HORA], [STATUS_AT] FROM [AGENDA]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [AGENDA] WHERE [ID] = @original_ID AND (([TITULO] = @original_TITULO) OR ([TITULO] IS NULL AND @original_TITULO IS NULL)) AND (([DATA] = @original_DATA) OR ([DATA] IS NULL AND @original_DATA IS NULL)) AND (([HORA] = @original_HORA) OR ([HORA] IS NULL AND @original_HORA IS NULL)) AND (([STATUS_AT] = @original_STATUS_AT) OR ([STATUS_AT] IS NULL AND @original_STATUS_AT IS NULL))" InsertCommand="INSERT INTO [AGENDA] ([TITULO], [DATA], [HORA], [STATUS_AT]) VALUES (@TITULO, @DATA, @HORA, @STATUS_AT)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [AGENDA] SET [TITULO] = @TITULO, [DATA] = @DATA, [HORA] = @HORA, [STATUS_AT] = @STATUS_AT WHERE [ID] = @original_ID AND (([TITULO] = @original_TITULO) OR ([TITULO] IS NULL AND @original_TITULO IS NULL)) AND (([DATA] = @original_DATA) OR ([DATA] IS NULL AND @original_DATA IS NULL)) AND (([HORA] = @original_HORA) OR ([HORA] IS NULL AND @original_HORA IS NULL)) AND (([STATUS_AT] = @original_STATUS_AT) OR ([STATUS_AT] IS NULL AND @original_STATUS_AT IS NULL))">
+            <DeleteParameters>
+                <asp:Parameter Name="original_ID" Type="Int32" />
+                <asp:Parameter Name="original_TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="original_DATA" />
+                <asp:Parameter DbType="Time" Name="original_HORA" />
+                <asp:Parameter Name="original_STATUS_AT" Type="String" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="DATA" />
+                <asp:Parameter DbType="Time" Name="HORA" />
+                <asp:Parameter Name="STATUS_AT" Type="String" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="DATA" />
+                <asp:Parameter DbType="Time" Name="HORA" />
+                <asp:Parameter Name="STATUS_AT" Type="String" />
+                <asp:Parameter Name="original_ID" Type="Int32" />
+                <asp:Parameter Name="original_TITULO" Type="String" />
+                <asp:Parameter DbType="Date" Name="original_DATA" />
+                <asp:Parameter DbType="Time" Name="original_HORA" />
+                <asp:Parameter Name="original_STATUS_AT" Type="String" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
     
     </div>
     </form>
